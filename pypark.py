@@ -9,7 +9,7 @@ from datetime import datetime
 import pandas as pd
 
 
-# In[273]:
+# In[387]:
 
 
 class disney_park:
@@ -29,6 +29,11 @@ class disney_park:
         self.__reverse_ent_indeces = list(set(range(0,self.size)) - set(self.__entertainment_indeces))
         self.waitdata_attractions = self.waitdata.iloc[:,self.__reverse_ent_indeces]
         self.waitdata_entertainement = self.waitdata.iloc[:,self.__entertainment_indeces]
+        if self.can_get_fastpass(): 
+            self.fastpass = self.get_fastpass()
+            self.__truefastpassindex = self.get_fastpass(index = True)
+            self.fastpasstrue = self.fastpass.iloc[:,self.__truefastpassindex]
+
     
     
     def refresh(self):
@@ -102,10 +107,34 @@ class disney_park:
         indeces = [i for i,x in enumerate(types) if x=='Entertainment']
         return(indeces)
         
+    def get_fastpass(self,index = False):
+        rawdata = self.rawwaitdata
+        names = []
+        times = []
+        indeces = []
+        for i in range(0,self.size):
+            names.append(str(i) + rawdata['entries'][i]['name'])
+            if rawdata['entries'][i]['waitTime']['fastPass']['available']:
+                indeces.append(i)
+                times.append([rawdata['entries'][i]['waitTime']['fastPass']['startTime']])
+            else:
+                times.append('Not Available')
+                
+
+        data = dict(zip(names,times))
+        data = pd.DataFrame.from_dict(data)
+        if index ==True:
+            return(indeces)
+        else:
+            return(data)
+        
+    def can_get_fastpass(self):
+        raise(("Method Must Be Defined By Inherited Class"))
+        
 
 
 
-# In[274]:
+# In[388]:
 
 
 class Disneyland(disney_park):
@@ -116,7 +145,20 @@ class Disneyland(disney_park):
         
     def get_resortid(self):
         return(80008297)
+    
+    def can_get_fastpass(self):
+        return(True)
 
+class CaliforniaAdventure(disney_park):
+    def get_parkid(self):
+        return(336894)
+
+        
+    def get_resortid(self):
+        return(80008297)
+    
+    def can_get_fastpass(self):
+        return(True)
     
 class MagicKingdom(disney_park):
     
@@ -126,4 +168,7 @@ class MagicKingdom(disney_park):
         
     def get_resortid(self):
         return(80007798)
+    
+    def can_get_fastpass(self):
+        return(False)
 
