@@ -24,3 +24,7 @@ DL.waitdata_entertainement // Wait time for shows/meet and greets
 DL.rawwaitdata //raw output from disney api (will be deprecated)
 
 DL.refresh() //refresh information from disney api
+
+Fastpass -1 out -2 doesn't offer
+
+Waittime -1 down -2 closed
