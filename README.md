@@ -1,4 +1,4 @@
-# pypark
+# pyparks
 Theme Parks API from Python (Unofficial)
 
 An Unofficial ThemeParks API for Python.
