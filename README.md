@@ -17,6 +17,8 @@ DL = pypark.Disneyland()
 
 DL.waitdata  //Outputs wait time at time accessed in the form of a pandas dataframe
 
+DL.openwaitdata //Outputs wait times of rides that are open only
+
 DL.timeretrieved //datetime of time accessed
 
 DL.waitdata_attractions // Wait time of attractions (rides) in the form of a pandas dataframe
