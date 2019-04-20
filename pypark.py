@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[5]:
+# In[2]:
 
 
 import requests
@@ -9,7 +9,7 @@ from datetime import datetime
 import pandas as pd
 
 
-# In[11]:
+# In[3]:
 
 
 class disney_park:
@@ -98,9 +98,9 @@ class disney_park:
             try:
                 times.append([rawdata['entries'][i]['waitTime']['postedWaitMinutes']])
             except KeyError:
-                if rawdata['entries'][20]['waitTime']['status'] == "Down":
+                if rawdata['entries'][i]['waitTime']['status'] == "Down":
                     times.append([-1])
-                else if rawdata['entries'][20]['waitTime']['status'] == "Operating":
+                elif rawdata['entries'][i]['waitTime']['status'] == "Operating":
                     times.append([0])
                 else:
                     times.append([-2])
@@ -163,6 +163,9 @@ class disney_park:
             if rawdata['entries'][i]['waitTime']['status'] == 'Operating':
                 operating_or_not.append(['Operating'])
                 op_index.append(i)
+            elif rawdata['entries'][i]['waitTime']['status'] == 'Down':
+                operating_or_not.append(['Down'])
+                op_index.append(i)
             else:
                 operating_or_not.append(['Closed'])
 
@@ -205,7 +208,7 @@ class disney_park:
 
 
 
-# In[7]:
+# In[4]:
 
 
 class Disneyland(disney_park):
@@ -242,16 +245,4 @@ class MagicKingdom(disney_park):
     
     def can_get_fastpass(self):
         return(True)
-
-
-# In[8]:
-
-
-dl = Disneyland()
-
-
-# In[10]:
-
-
-dl.rawwaitdata
 
