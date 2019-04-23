@@ -7,7 +7,12 @@ Based on themeparks by cubehouse and amusement by rambleraptor.
 
 In Early Stages, not yet ready for distribution.
 
-Currently Disneyland Resort (Disneyland and California Adventure) Wait Times and Fast Pass Times are Supported
+Currently Disneyland Resort (Disneyland and California Adventure) Wait Times and Fast Pass Times are Supported, as well as schedules
+
+## Installation
+
+Just drop the script in your folder and import it as pypark
+
 
 ## Usage
 
