@@ -7,9 +7,12 @@
 import requests
 from datetime import datetime
 import pandas as pd
+from unidecode import unidecode
 
 
 # In[3]:
+
+
 
 
 class disney_park:
@@ -60,12 +63,12 @@ class disney_park:
         data = r.json()
         return(data)
     
-    def __get_parkid(self):
+    def get_parkid(self):
         """Park ID provided by inherited class"""
         raise("Method Must Be Defined By Inherited Class")
 
         
-    def __get_resortid(self):
+    def get_resortid(self):
         """Resort ID provided by inherited class"""
         raise("Method Must Be Defined By Inherited Class")
         
@@ -94,7 +97,7 @@ class disney_park:
         names = []
         times = []
         for i in range(0,self.size):
-            names.append(rawdata['entries'][i]['name'].replace('"','') + ' '+ str(i))
+            names.append(unidecode(rawdata['entries'][i]['name'].replace('"','').replace(' ','_').replace('–','_').replace("'",'').replace(':','_').replace('!','').replace(',','').replace('\xa0','').replace('.','').replace('&','and').replace('-','').replace('É','e').lower().strip()))
             try:
                 times.append([rawdata['entries'][i]['waitTime']['postedWaitMinutes']])
             except KeyError:
@@ -109,7 +112,7 @@ class disney_park:
         data = pd.DataFrame.from_dict(data)
         data = data[names]
         Time = pd.Series([self.timeretrieved])
-        data['Time'] = Time
+        data['mytime'] = Time
         return(data,names)
     
     def __get_ent_indeces(self):
@@ -145,7 +148,7 @@ class disney_park:
         data = pd.DataFrame.from_dict(data)
         data = data[self.names]
         Time = pd.Series([self.timeretrieved])
-        data['Time'] = Time
+        data['mytime'] = Time
         time_indeces = [self.size]
         indeces.extend(time_indeces)
         return((data,indeces))
@@ -173,14 +176,14 @@ class disney_park:
         data = pd.DataFrame.from_dict(data)
         data = data[self.names]
         Time = pd.Series([self.timeretrieved])
-        data['Time'] = Time
+        data['mytime'] = Time
         time_indeces = [self.size]
         op_index.extend(time_indeces)
         
         return(operating_or_not,op_index)
     
     def get_scheduledata(self,startDate = False,endDate = False):
-        """Cleans Schedule Data, Can Be Used Seperately to Find Schedule Of Specified Range. startDate and endDate Format is string "YYYY_MM_DD" """
+        """Cleans Schedule Data, Can Be Used Seperately to Find Schedule Of Specified Range. startDate and endDate Format is string "YYYY-MM-DD" """
         if startDate:
             rawdata = self.__get_rawscheduledata(startDate=startDate,endDate = endDate)
         else:
@@ -192,10 +195,7 @@ class disney_park:
         for j in range(0,len(rightdata)):
             if rightdata[j]['type']=='Operating':
                 tempdata = pd.DataFrame(rightdata[j],index=[0])
-                try:
-                    data = data.append(tempdata)
-                except:
-                    data = tempdata
+                data = tempdata
 
                     
         
@@ -203,15 +203,15 @@ class disney_park:
                 
             
         
-         
-        
-
 
 
 # In[4]:
 
 
 class Disneyland(disney_park):
+
+    def get_parkcoord(self):
+        return({'lat':33.8121,'lon':-117.9190})
         
     def get_parkid(self):
         return(330339)
