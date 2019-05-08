@@ -1,13 +1,12 @@
 # pyparks
-Theme Parks API from Python (Unofficial)
 
 An Unofficial ThemeParks API for Python.
 
 Based on themeparks by cubehouse and amusement by rambleraptor.
 
-In Early Stages, not yet ready for distribution.
+In Early Stages, not yet fully tested.
 
-Currently Disneyland Resort (Disneyland and California Adventure) Wait Times and Fast Pass Times are Supported
+Currently Disneyland Resort (Disneyland and California Adventure) Wait Times and Fast Pass Times are Supported and tested.
 
 
 ## Installation
