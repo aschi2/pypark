@@ -66,12 +66,12 @@ class disney_park:
     def get_parkid(self):
         """Park ID provided by inherited class"""
         raise("Method Must Be Defined By Inherited Class")
-
+        return(0)
         
     def get_resortid(self):
         """Resort ID provided by inherited class"""
         raise("Method Must Be Defined By Inherited Class")
-        
+        return(0)
     def __get_rawwaitdata(self):
         """Raw Wait Data Input to be used by other attributes and methods"""
         r = requests.get(url = self.__API_BASE+'facility-service/theme-parks/{}/wait-times'.format(self.parkid),headers=self.__headers)
@@ -97,7 +97,7 @@ class disney_park:
         names = []
         times = []
         for i in range(0,self.size):
-            names.append(unidecode(rawdata['entries'][i]['name'].replace('"','').replace(' ','_').replace('–','_').replace("'",'').replace(':','_').replace('!','').replace(',','').replace('\xa0','').replace('.','').replace('&','and').replace('-','').replace('É','e').lower().strip()))
+            names.append(unidecode(rawdata['entries'][i]['name'].replace('"','').replace(' ','_').replace('–','_').replace("'",'').replace(':','_').replace('!','').replace(',','').replace('\xa0','').replace('.','').replace('&','and').replace('-','').replace('É','e').lower().strip()+ '_' + str(rawdata['entries'][i]['id']).split(';')[0]))
             try:
                 times.append([rawdata['entries'][i]['waitTime']['postedWaitMinutes']])
             except KeyError:

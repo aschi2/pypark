@@ -1,0 +1,8 @@
+README.md
+setup.py
+pyparks/__init__.py
+pyparks.egg-info/PKG-INFO
+pyparks.egg-info/SOURCES.txt
+pyparks.egg-info/dependency_links.txt
+pyparks.egg-info/requires.txt
+pyparks.egg-info/top_level.txt

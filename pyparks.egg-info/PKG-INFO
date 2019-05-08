@@ -1,0 +1,11 @@
+Metadata-Version: 1.0
+Name: pyparks
+Version: 0.1
+Summary: Easy Python API for Themeparks
+Home-page: https://github.com/aschi2/pyparks
+Author: Austin
+Author-email: achi002@ucr.edu
+License: MIT
+Description: UNKNOWN
+Keywords: themepark disneyland wait time fastpass
+Platform: UNKNOWN
