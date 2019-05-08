@@ -68,3 +68,7 @@ Data is returned as Pandas Dataframes. Information is staight from the Disney AP
 # WARNING
 
 This is an unofficial package, not endorced by any of the supported themeparks. Any support could be broken without warning.
+
+### License
+
+MIT
