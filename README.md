@@ -10,7 +10,7 @@ In Early Stages, not yet ready for distribution.
 Currently Disneyland Resort (Disneyland and California Adventure) Wait Times and Fast Pass Times are Supported
 
 
-##Installation
+## Installation
 
     pip install pyparks
 
@@ -65,6 +65,6 @@ Waittime -1 down -2 closed
 
 Data is returned as Pandas Dataframes. Information is staight from the Disney API therefore rides returned may be inconsistent depending on if new rides are added or taken away.
 
-#WARNING
+# WARNING
 
 This is an unofficial package, not endorced by any of the supported themeparks. Any support could be broken without warning.
