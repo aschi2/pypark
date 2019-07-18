@@ -1,3 +1,6 @@
+# NOT FUNCTIONAL UNTIL COUCHBASE LITE COMES TO PYTHON
+
+
 # pyparks
 
 An Unofficial ThemeParks API for Python.
